@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元宵节快乐</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #8b0000; /* 喜庆的深红色背景 */
+            color: #ffd700; /* 金色字体 */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .lantern {
+            font-size: 80px;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            margin-bottom: 20px;
+            /* 移除点击高亮框 */
+            -webkit-tap-highlight-color: transparent; 
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        h1 {
+            font-size: 28px;
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .message {
+            display: none; /* 初始隐藏祝福语 */
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .btn {
+            background-color: #ffd700;
+            color: #8b0000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="lantern" id="lantern" onclick="lightUp()">🏮</div>
+        <h1>㊗️Kaylyn元宵節快樂🎉</h1>
+
+        <button class="btn" id="btn" onclick="lightUp()">点亮彩灯，查看祝福</button>
+
+        <div class="message" id="message">
+            <p>正月十五鬧花燈，月圓人圓事事圓！</p>
+            <p>在這個萬家燈火的團圓時刻，<br>祝你新的一年：<br>順風順水顺財神，<br>平安喜樂萬事勝！</p>
+            <p style="font-size: 12px; margin-top: 30px;">-- 来自你的好dev</p>
+        </div>
+    </div>
+
+    <script>
+        function lightUp() {
+            // 隐藏按钮
+            document.getElementById('btn').style.display = 'none';
+            // 显示祝福语
+            document.getElementById('message').style.display = 'block';
+            // 让灯笼发光
+            document.getElementById('lantern').style.textShadow = '0 0 30px #ffd700, 0 0 60px #ff8c00';
+        }
+    </script>
+</body>
+
+</html>
