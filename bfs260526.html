@@ -16,9 +16,10 @@
             background: #f3e9d5;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             font-family: "KaiTi", "楷体", "STKaiti", serif;
-            padding: 20px;
+            padding-top: 15vh;
+            padding-bottom: 10vh;
             overflow-x: hidden;
         }
 
@@ -27,11 +28,11 @@
             position: relative;
             width: 92vw;
             max-width: 450px;
-            min-height: 580px;
+            min-height: 650px;
             cursor: pointer;
         }
 
-        /* 信封主体 - 深棕色牛皮纸质感 */
+        /* 信封主体 */
         .envelope {
             position: absolute;
             top: 50%;
@@ -50,7 +51,7 @@
             transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* 信封标题 - 完整居中显示 */
+        /* 信封标题 */
         .envelope-title {
             position: absolute;
             top: 50%;
@@ -79,15 +80,15 @@
             background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
         }
 
-        /* 信纸 - 内容完整显示 */
+        /* 信纸 */
         .letter {
             position: absolute;
-            top: 50%;
+            top: 0;
             left: 3%;
-            transform: translateY(-50%);
             width: 94%;
             background: #fef9e7;
-            padding: 40px 30px;
+            padding: 35px 30px;
+            padding-bottom: 50px;
             box-shadow: 
                 0 10px 30px rgba(0, 0, 0, 0.25),
                 inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -97,15 +98,15 @@
             color: #2c2c2c;
             z-index: 2;
             opacity: 0;
-            transform: translateY(-50%) scale(0.92);
+            transform: translateY(100%);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
             background-image: url("https://www.transparenttextures.com/patterns/paper.png");
             border-radius: 8px;
         }
 
-        /* 打开动画：信封向下滑走，信纸显示 */
+        /* 打开动画 */
         .envelope-wrapper.open .envelope {
-            transform: translateY(160%);
+            transform: translateY(200%);
         }
 
         .envelope-wrapper.open .envelope-flap {
@@ -114,7 +115,7 @@
 
         .envelope-wrapper.open .letter {
             opacity: 1;
-            transform: translateY(-50%) scale(1);
+            transform: translateY(0);
         }
 
         /* 侨批标题 */
@@ -162,6 +163,19 @@
             height: 1px;
             background: rgba(0, 0, 0, 0.2);
         }
+
+        /* 小屏手机适配 */
+        @media (max-height: 700px) {
+            body {
+                padding-top: 12vh;
+            }
+            .letter {
+                padding: 30px 25px;
+                padding-bottom: 45px;
+                line-height: 2.1;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -171,7 +185,7 @@
             <div class="envelope-flap"></div>
             <div class="envelope-title">给你的一封信</div>
         </div>
-        <!-- 你的完整文案 -->
+        <!-- 你的最新完整文案 -->
         <div class="letter">
             <h3>僑批</h3>
             吾男友s：展信安康<br><br>
