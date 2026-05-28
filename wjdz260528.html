@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>给你的一封信</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f3e9d5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: "KaiTi", "楷体", "STKaiti", serif;
+            padding-top: 8vh;
+            padding-bottom: 10vh;
+            overflow-x: hidden;
+        }
+
+        /* 容器 */
+        .envelope-wrapper {
+            position: relative;
+            width: 92vw;
+            max-width: 450px;
+            min-height: 600px;
+            cursor: pointer;
+        }
+
+        /* 信封主体 */
+        .envelope {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(145deg, #b88646 0%, #a6773d 100%);
+            border-radius: 12px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.35),
+                inset 0 3px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+            z-index: 3;
+            background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
+            transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 信封标题 - 精确缩小4px至20px */
+        .envelope-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px; /* 从24px再缩小4px */
+            color: #5a3d1a;
+            font-weight: bold;
+            letter-spacing: 6px;
+            text-align: center;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* 信封翻盖 */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(145deg, #a6773d 0%, #956630 100%);
+            clip-path: polygon(0 0, 50% 68%, 100% 0);
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+            transform-origin: top center;
+            z-index: 4;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
+        }
+
+        /* 信纸 */
+        .letter {
+            position: absolute;
+            top: 0;
+            left: 3%;
+            width: 94%;
+            background: #fef9e7;
+            padding: 35px 30px;
+            padding-bottom: 50px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border: 2px solid #d4b886;
+            line-height: 2.2;
+            font-size: 17px;
+            color: #2c2c2c;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+            background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+            border-radius: 8px;
+        }
+
+        /* 打开动画 */
+        .envelope-wrapper.open .envelope {
+            transform: translateY(200%);
+        }
+
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-wrapper.open .letter {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 侨批标题 */
+        .letter h3 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-size: 22px;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        /* 落款 */
+        .letter .sign {
+            text-align: right;
+            margin-top: 12px;
+        }
+
+        /* 复古印章 */
+        .seal {
+            position: absolute;
+            bottom: 30px;
+            left: 25px;
+            width: 42px;
+            height: 42px;
+            border: 2px solid #cd5c5c;
+            border-radius: 5px;
+            color: #cd5c5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-15deg);
+            font-size: 15px;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        /* 信封封口线 */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 150px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* 小屏手机适配 - 同步缩小4px至18px */
+        @media (max-height: 700px) {
+            body {
+                padding-top: 6vh;
+            }
+            .letter {
+                padding: 30px 25px;
+                padding-bottom: 45px;
+                line-height: 2.1;
+                font-size: 16px;
+            }
+            .envelope-title {
+                font-size: 18px; /* 从22px同步缩小4px */
+                letter-spacing: 5px;
+            }
+            .letter .sign {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-wrapper" id="envelope">
+        <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-title">给你的一封信</div>
+        </div>
+        <!-- 你的完整文案 -->
+        <div class="letter">
+            <h3>僑批</h3>
+            吾友旭鑫：展信安康<br><br>
+            工位日猛，通身热热，速寄奶茶来，以解摸鱼之苦。<br>
+            客户难缠，需求离谱，心中念你，便不觉崩溃。<br><br>
+            请V我五十元，今日下午茶你请，我要健康奶昔三分糖。<br>
+            上班虽苦，摸鱼当大赚，摸鱼技术务必精进。<br><br>
+            顺颂<br>
+            摸鱼顺利<br><br>
+            <div class="sign">
+                达<br>
+                2026年五月二十八
+            </div>
+            <div class="seal">平安</div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        let isOpen = false;
+        
+        const openEnvelope = () => {
+            if (!isOpen) {
+                envelope.classList.add('open');
+                isOpen = true;
+            }
+        };
+        
+        envelope.addEventListener('click', openEnvelope);
+        envelope.addEventListener('touchstart', openEnvelope, { passive: true });
+    </script>
+
+</body>
+</html>
