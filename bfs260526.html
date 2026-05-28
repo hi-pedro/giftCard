@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: flex-start;
             font-family: "KaiTi", "楷体", "STKaiti", serif;
-            padding-top: 15vh;
+            padding-top: 8vh; /* 大幅缩短顶部距离 */
             padding-bottom: 10vh;
             overflow-x: hidden;
         }
@@ -28,7 +28,7 @@
             position: relative;
             width: 92vw;
             max-width: 450px;
-            min-height: 650px;
+            min-height: 600px;
             cursor: pointer;
         }
 
@@ -51,17 +51,16 @@
             transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* 信封标题 - 优化为两行居中显示 */
+        /* 信封标题 - 恢复为一行，字体调小 */
         .envelope-title {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 32px; /* 字体稍微放大，两行更饱满 */
+            font-size: 26px; /* 字体调小 */
             color: #5a3d1a;
             font-weight: bold;
-            letter-spacing: 12px; /* 增加字间距，更有质感 */
-            line-height: 1.4; /* 调整行高，两行间距合适 */
+            letter-spacing: 6px; /* 字间距调小 */
             text-align: center;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
         }
@@ -169,7 +168,7 @@
         /* 小屏手机适配 */
         @media (max-height: 700px) {
             body {
-                padding-top: 12vh;
+                padding-top: 6vh;
             }
             .letter {
                 padding: 30px 25px;
@@ -178,8 +177,8 @@
                 font-size: 16px;
             }
             .envelope-title {
-                font-size: 28px;
-                letter-spacing: 10px;
+                font-size: 24px;
+                letter-spacing: 5px;
             }
         }
     </style>
@@ -189,8 +188,8 @@
     <div class="envelope-wrapper" id="envelope">
         <div class="envelope">
             <div class="envelope-flap"></div>
-            <!-- 标题改为两行显示 -->
-            <div class="envelope-title">给你的一<br>封信</div>
+            <!-- 标题恢复为一行显示 -->
+            <div class="envelope-title">给你的一封信</div>
         </div>
         <!-- 你的完整文案 -->
         <div class="letter">
