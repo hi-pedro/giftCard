@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: flex-start;
             font-family: "KaiTi", "楷体", "STKaiti", serif;
-            padding-top: 8vh; /* 大幅缩短顶部距离 */
+            padding-top: 8vh;
             padding-bottom: 10vh;
             overflow-x: hidden;
         }
@@ -51,16 +51,16 @@
             transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* 信封标题 - 恢复为一行，字体调小 */
+        /* 信封标题 - 精确缩小4px至20px */
         .envelope-title {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 26px; /* 字体调小 */
+            font-size: 20px; /* 从24px再缩小4px */
             color: #5a3d1a;
             font-weight: bold;
-            letter-spacing: 6px; /* 字间距调小 */
+            letter-spacing: 6px;
             text-align: center;
             text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
         }
@@ -132,7 +132,7 @@
         /* 落款 */
         .letter .sign {
             text-align: right;
-            margin-top: 25px;
+            margin-top: 12px;
         }
 
         /* 复古印章 */
@@ -165,7 +165,7 @@
             background: rgba(0, 0, 0, 0.2);
         }
 
-        /* 小屏手机适配 */
+        /* 小屏手机适配 - 同步缩小4px至18px */
         @media (max-height: 700px) {
             body {
                 padding-top: 6vh;
@@ -177,8 +177,11 @@
                 font-size: 16px;
             }
             .envelope-title {
-                font-size: 24px;
+                font-size: 18px; /* 从22px同步缩小4px */
                 letter-spacing: 5px;
+            }
+            .letter .sign {
+                margin-top: 10px;
             }
         }
     </style>
@@ -188,7 +191,6 @@
     <div class="envelope-wrapper" id="envelope">
         <div class="envelope">
             <div class="envelope-flap"></div>
-            <!-- 标题恢复为一行显示 -->
             <div class="envelope-title">给你的一封信</div>
         </div>
         <!-- 你的完整文案 -->
